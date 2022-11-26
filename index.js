@@ -2,6 +2,7 @@ import express from 'express'
 import fetch from 'node-fetch'
 import cors from 'cors'
 
+const PORT = process.env.PORT || 5000
 var app = express();
 app.use(express.json());
 app.use(cors());
@@ -34,4 +35,4 @@ var fetcher = async (query, variables) => {
     return result;
 }
 
-app.listen(3981,'127.0.0.1', () => {console.log("Server Running on 3981")})
+app.listen(PORT, () => {console.log(`Server Running on ${PORT}`)})
