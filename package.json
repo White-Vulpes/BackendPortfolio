@@ -1,9 +1,12 @@
 {
   "type": "module",
   "dependencies": {
+    "@google-cloud/local-auth": "^2.1.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "googleapis": "^105.0.0",
     "node-fetch": "^3.3.0",
+    "nodemailer": "^6.8.0",
     "selenium": "^2.20.0"
   }
 }
