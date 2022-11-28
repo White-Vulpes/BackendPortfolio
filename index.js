@@ -47,7 +47,7 @@ app.post('/mailRequest', async (req, res) => {
 
 app.post('/sendMail', async (req, res) => {
   if(req.body.event != null){
-    sendMail(req.body.event.data.new.mail)
+    sendMail(req.body.event.data.new.mail, req.body.event.data.new.first_name, req.body.event.data.new.last_name, req.body.event.data.new.comments)
     .then((result) => res.status(200).json(result))
     .catch((error) => res.status(400).json(error));
   }
@@ -61,7 +61,7 @@ var fetcher = async (query, variables) => {
     return result;
 }
 
-async function sendMail(mailAdd) {
+async function sendMail(mailAdd, first_name, last_name, comments) {
   try {
     const accessToken = await oAuth2Client.getAccessToken();
 
@@ -79,10 +79,10 @@ async function sendMail(mailAdd) {
 
     const mailOptions = {
       from: 'aayush.02.parmar@gmail.com',
-      to: mailAdd,
-      subject: 'Hello from ' + mailAdd,
-      text: "Thankyou for Contacting me. I will get back to you in sometime",
-      html: `<p>Thankyou for Contacting me. I will get back to you in sometime<p>`,
+      to: 'aayush.02.parmar@gmail.com',
+      subject: 'Hello from ' + first_name + " " + last_name,
+      text: first_name + " " + last_name + " says, \n" + comments + "\n\n\nMail Address: " + mailAdd,
+      html: `<h3>${first_name} ${last_name} says,</h3><br>"<p>${comments}</p><br><br><br>Mail Address: ${mailAdd}`,
     };
 
     const result = await transport.sendMail(mailOptions);
