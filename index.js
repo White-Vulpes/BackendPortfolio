@@ -9,7 +9,7 @@ app.use(cors());
 
 var URL = "https://white-vulpes.hasura.app/v1/graphql";
 
-app.post('/sendMail', async (req, res) => {
+app.post('/mailRequest', async (req, res) => {
   let query = `mutation MyMutation($comments: String = "", $first_name: String = "", $last_name: String = "", $mail: String = "") {
                     insert_mail_records_one(object: {comments: $comments, first_name: $first_name, last_name: $last_name, mail: $mail}) {
                     id
@@ -21,6 +21,7 @@ app.post('/sendMail', async (req, res) => {
     last_name: req.body.query.last_name,
     mail: req.body.query.mail
   }
+  
   let result = await fetcher(query, variables);
   try{
     if(result.data.insert_mail_records_one.id != null) res.status(200).json({status: "Sent"});
