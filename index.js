@@ -82,7 +82,9 @@ async function sendMail(mailAdd, first_name, last_name, comments) {
       to: 'aayush.02.parmar@gmail.com',
       subject: 'Hello from ' + first_name + " " + last_name,
       text: first_name + " " + last_name + " says, \n" + comments + "\n\n\nMail Address: " + mailAdd,
-      html: `<h3>${first_name} ${last_name} says,</h3><br><p>${comments}</p><br><br><br>Mail Address: ${mailAdd}`,
+      html: `<img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUA
+    AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
+        9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />`,
     };
 
     const result = await transport.sendMail(mailOptions);
